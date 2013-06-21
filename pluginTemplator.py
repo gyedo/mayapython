@@ -27,15 +27,31 @@ def write_plugin_init():
 def write_plugin_class(name, pluginType):
     parentClass = 'OpenMayaMPx.MPxNode'
 	
-    plugin_class_str = ('class ' + name +'(' + parentClass + '):\n\n'
-			'\tdef __init__(self):\n'
+    plugin_class_str = 'class ' + name +'(' + parentClass + '):\n\n'
+
+    if pluginType == 'texture/2d':
+        plugin_class_str += ('\taOutColor = OpenMaya.MObject()\n'
+                             '\taUCoord = OpenMaya.MObject()\n'
+                             '\taVCoord = OpenMaya.MObject()\n'
+                             '\taUVCoord = OpenMaya.MObject()\n'
+                             '\taFilterSizeX = OpenMaya.MObject()\n'
+                             '\taFilterSizeY = OpenMaya.MObject()\n'
+                             '\taFilterSize = OpenMaya.MObject()\n\n')
+
+    plugin_class_str += ('\tdef __init__(self):\n'
 			'\t\t' + parentClass + '.__init__(self)\n\n')
 
     if pluginType == 'texture/2d':
         plugin_class_str += ('\tdef compute(self, plug, block):\n'
                              '\t\tif (plug == ' + name + '.aOutColor):\n'
-                             '\t\t\t# write compute function here\n'
-                             '\t\t\tpass\n'
+                             '\t\t\tresultColor = OpenMaya.MFloatVector()\n'
+                             '\t\t\tu = block.inputValue(' + name + '.aUCoord).asFloat()\n'
+                             '\t\t\tv = block.inputValue(' + name + '.aVCoord).asFloat()\n\n'
+                             '\t\t\t# write compute function here\n\n'
+                             '\t\t\t#set output color attribute\n'
+                             '\t\t\toutColorHandle = block.outputValue(' + name + '.aOutColor)\n'
+                             '\t\t\toutColorHandle.setMFloatVector(resultColor)\n'
+                             '\t\t\toutColorHandle.setClean()\n'
                              '\t\telse:\n'
                              '\t\t\treturn OpenMaya.kUnknownParameter\n\n')
 
@@ -56,7 +72,7 @@ def write_plugin_node_init(name, pluginType):
 				 '\t' + name + '.aVCoord = nAttr.create( "vCoord", "v", OpenMaya.MFnNumericData.kFloat, 0.5)\n'
 				 '\tnAttr.setKeyable(True)\n'
 				 '\tnAttr.setStorable(True)\n\n'
-                                 '\t' + name + '.aUVCoord = nAttr.create( "uvCoord","uv", StarTexture.aUCoord, StarTexture.aVCoord)\n'
+                                 '\t' + name + '.aUVCoord = nAttr.create( "uvCoord","uv", ' + name + '.aUCoord, ' + name + '.aVCoord)\n'
 				 '\tnAttr.setKeyable(True)\n'
 				 '\tnAttr.setStorable(True)\n'
 				 '\tnAttr.setHidden(True)\n\n'
