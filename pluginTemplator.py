@@ -110,7 +110,7 @@ if __name__ == '__main__':
     if len(argv) == 3:
         write_template(argv[1], argv[2])
     else:
-        print 'error'
+        print 'Usage:\n\tpluginTemplator.py <plugin name> <plugin type>\nExample:\n\tpluginTemplator.py MyTexture texture/2d'
     
     
     
