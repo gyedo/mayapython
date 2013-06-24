@@ -1,0 +1,62 @@
+{
+	"name": "TaegukTexture",
+	"type": "texture/2d",
+	"typeId": "0x0000D",
+	"attributes": [
+		{
+			"longName":"color1",
+			"shortName":"c1",
+			"type":"FloatVector",
+			"affectingAttributes": ["outColor"],
+			"affectedAttributes": [],
+			"properties": 
+			{
+				"default":"1.0, 0.0, 0.0",
+				"keyable":"True",
+				"sortable":"True"
+			}
+		},
+		{
+			"longName":"color2",
+			"shortName":"c2",
+			"type":"FloatVector",
+			"affectingAttributes": ["outColor"],
+			"affectedAttributes": [],
+			"properties": 
+			{
+				"default":"0.0, 0.0, 1.0",
+				"keyable":"True",
+				"sortable":"True"
+			}
+		},
+		{
+			"longName":"color3",
+			"shortName":"c3",
+			"type":"FloatVector",
+			"affectingAttributes": ["outColor"],
+			"affectedAttributes": [],
+			"properties": 
+			{
+				"default":"1.0, 1.0, 1.0",
+				"keyable":"True",
+				"sortable":"True"
+			}
+		},
+		{
+			"longName":"radius",
+			"shortName":"r",
+			"valueName":"radius",
+			"type":"FloatVector", 
+			"affectingAttributes": ["outColor"],
+			"affectedAttributes": [],
+			"properties":
+			{
+				"default":"0.25",
+				"keyable":"True",
+				"sortable":"True",
+				"min":"0.0",
+				"max":"0.5"
+			}
+		}
+	]
+}
