@@ -46,7 +46,7 @@
 			"longName":"radius",
 			"shortName":"r",
 			"valueName":"radius",
-			"type":"FloatVector", 
+			"type":"Float", 
 			"affectingAttributes": ["outColor"],
 			"affectedAttributes": [],
 			"properties":
